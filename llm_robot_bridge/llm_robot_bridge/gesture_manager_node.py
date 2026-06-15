@@ -18,7 +18,9 @@ class GestureManagerNode(Node):
             'handshake': os.path.join(base_path, 'gesture_handshake.py'),
             'hand_up': os.path.join(base_path, 'gesture_hand_up.py'),
             'hand_side': os.path.join(base_path, 'gesture_hand_side.py'),
-            'hand_down': os.path.join(base_path, 'gesture_hand_down.py')
+            'hand_down': os.path.join(base_path, 'gesture_hand_down.py'),
+            'state_thinking': os.path.join(base_path, 'gesture_thinking.py'),
+            'walk': os.path.join(base_path, 'gesture_walk.py')
         }
         
         self.log_file_path = os.path.expanduser('~/gesture_execution.log')

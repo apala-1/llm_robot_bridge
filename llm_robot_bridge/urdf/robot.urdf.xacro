@@ -248,7 +248,7 @@
     <joint name="base_joint" type="fixed">
         <parent link="base_footprint"/>
         <child link="base_link"/>
-        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+        <origin xyz="0 0 0.1" rpy="0 0 0"/>
     </joint>
 
     <xacro:macro name="wheel" params="prefix y_dir">
@@ -257,11 +257,20 @@
             <collision><origin xyz="0 0 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.1" length="0.05"/></geometry></collision>
             <xacro:cyl_inertia m="2.0" r="0.1" h="0.05"/>
         </link>
-        <gazebo reference="${prefix}_wheel"><material>Gazebo/DarkGrey</material></gazebo>
+        
+        <!-- 💡 UPDATED GAZEBO REFERENCE BLOCK WITH SURFACE FRICTION OVERRIDES -->
+        <gazebo reference="${prefix}_wheel">
+            <material>Gazebo/DarkGrey</material>
+            <mu1>1.5</mu1>
+            <mu2>1.5</mu2>
+            <kp>1000000.0</kp>
+            <kd>1.0</kd>
+        </gazebo>
+        
         <joint name="${prefix}_wheel_joint" type="continuous">
             <parent link="base_link"/>
             <child link="${prefix}_wheel"/>
-            <origin xyz="0 ${y_dir * 0.35} 0.05" rpy="0 0 0"/>
+            <origin xyz="0 ${y_dir * 0.35} 0.0" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
             <dynamics damping="0.1" friction="0.1"/>
         </joint>
@@ -279,7 +288,7 @@
         <joint name="${prefix}_caster_joint" type="fixed">
             <parent link="base_link"/>
             <child link="${prefix}_caster"/>
-            <origin xyz="${x_dir * 0.25} 0 0.0" rpy="0 0 0"/>
+            <origin xyz="${x_dir * 0.25} 0 -0.05" rpy="0 0 0"/>
         </joint>
     </xacro:macro>
     <xacro:caster prefix="front" x_dir="1"/>
@@ -344,13 +353,13 @@
             <wheel_separation>0.7</wheel_separation>
             <wheel_radius>0.1</wheel_radius>
             <odom_publish_frequency>50</odom_publish_frequency>
-            <max_linear_acceleration>1</max_linear_acceleration>
-            <max_angular_acceleration>2</max_angular_acceleration>
+            <max_linear_acceleration>2.0</max_linear_acceleration>
+            <max_angular_acceleration>4.0</max_angular_acceleration>
+            <topic>/model/dual_arm_service_bot/cmd_vel</topic> 
             
-            <topic>/cmd_vel</topic>
-            <odom_topic>/model/dual_arm_service_bot/odometry</odom_topic>
-            <tf_topic>/model/dual_arm_service_bot/tf</tf_topic>
             <robot_base_frame>base_footprint</robot_base_frame>
+            <odom_topic>/model/dual_arm_service_bot/odom</odom_topic>
+            <tf_topic>/model/dual_arm_service_bot/tf</tf_topic>
         </plugin>
     </gazebo>
 

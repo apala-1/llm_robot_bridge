@@ -2,67 +2,48 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64
-import math
 import time
 
-class GestureHandSide(Node):
+class GestureHandSideNode(Node):
     def __init__(self):
-        super().__init__('gesture_hand_side')
-        self.pitch_pub = self.create_publisher(Float64, '/left_arm/shoulder_pitch/cmd_pos', 10)
-        self.roll_pub = self.create_publisher(Float64, '/left_arm/shoulder_roll/cmd_pos', 10)
-        self.elbow_pub = self.create_publisher(Float64, '/left_arm/elbow/cmd_pos', 10)
-        time.sleep(0.5)
+        super().__init__('gesture_hand_side_node')
+        self.r_roll = self.create_publisher(Float64, '/right_arm/shoulder_roll/cmd_pos', 10)
+        self.r_pitch = self.create_publisher(Float64, '/right_arm/shoulder_pitch/cmd_pos', 10)
+        self.l_roll = self.create_publisher(Float64, '/left_arm/shoulder_roll/cmd_pos', 10)
+        self.l_pitch = self.create_publisher(Float64, '/left_arm/shoulder_pitch/cmd_pos', 10)
+        self.corridor_sub = self.create_subscription(Float64, '/corridor_width', self.corridor_cb, 10)
+        self.corridor_width = 2.0
+        
+        time.sleep(0.1)
+        rclpy.spin_once(self, timeout_sec=0.1)
+        self.execute()
 
-    def send(self, pub, val):
-        pub.publish(Float64(data=float(val)))
+    def corridor_cb(self, msg):
+        self.corridor_width = msg.data
 
     def execute(self):
-        self.get_logger().info("🌐 Executing Fluid Explaining Sweep...")
-        rate = 0.02
-        duration = 1.0
-        steps = int(duration / rate)
+        scale = max(0.3, min(1.0, (self.corridor_width - 0.5) / 0.9))
 
-        # Phase 1: Bring arm up to presentation position
-        for i in range(steps):
-            t = i * rate
-            progress = t / duration
-            smooth_step = (1.0 - math.cos(progress * math.pi)) / 2.0
-            
-            self.send(self.pitch_pub, 0.0 + (0.4 * smooth_step))
-            self.send(self.roll_pub, 0.0 + (0.3 * smooth_step))
-            self.send(self.elbow_pub, 0.0 + (-0.9 * smooth_step))
-            time.sleep(rate)
-
-        # Phase 2: Smooth fluid outward expansion sweep
-        sweep_duration = 2.0
-        sweep_steps = int(sweep_duration / rate)
-        for i in range(sweep_steps):
-            t = i * rate
-            progress = t / sweep_duration
-            # A single smooth slow arc out and back
-            sweep_step = math.sin(progress * math.pi)
-            
-            self.send(self.roll_pub, 0.3 + (0.4 * sweep_step))    # Move arm wide open
-            self.send(self.elbow_pub, -0.9 + (0.3 * sweep_step))  # Open elbow up slightly
-            time.sleep(rate)
-
-        # Phase 3: Retract smoothly
-        for i in range(steps):
-            t = i * rate
-            progress = t / duration
-            smooth_step = (1.0 - math.cos(progress * math.pi)) / 2.0
-            
-            self.send(self.pitch_pub, 0.4 - (0.4 * smooth_step))
-            self.send(self.roll_pub, 0.3 - (0.3 * smooth_step))
-            self.send(self.elbow_pub, -0.9 - (-0.9 * smooth_step))
-            time.sleep(rate)
-
-        self.get_logger().info("✅ Sweep Finished.")
+        r_msg = Float64()
+        p_msg = Float64()
+        
+        # Right arm outwards configuration
+        r_msg.data = float(1.3 * scale)
+        p_msg.data = float(0.1)
+        self.r_roll.publish(r_msg)
+        self.r_pitch.publish(p_msg)
+        
+        # Left arm mirror outwards configuration (Opposing roll orientation symbol)
+        r_msg.data = float(-1.3 * scale)
+        p_msg.data = float(0.1)
+        self.l_roll.publish(r_msg)
+        self.l_pitch.publish(p_msg)
+        
+        time.sleep(2.0)
 
 def main():
     rclpy.init()
-    node = GestureHandSide()
-    node.execute()
+    node = GestureHandSideNode()
     node.destroy_node()
     rclpy.shutdown()
 
