@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from time import time
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -60,13 +62,32 @@ class GestureManagerNode(Node):
                 current_env = os.environ.copy()
                 current_env["PYTHONPATH"] = os.path.dirname(script_path) + os.pathsep + current_env.get("PYTHONPATH", "")
                 
-                # Fire script instantly without blocking the network node thread
-                subprocess.Popen(
-                    [sys.executable, script_path],
-                    stdout=log_file,
-                    stderr=log_file,
-                    env=current_env
-                )
+                # --- PIPELINE SEQUENCER WRAPPER ---
+                # If it's already a hand_down command, don't wrap it! Just run it directly.
+                if command == 'hand_down':
+                    log_file.write(f"[SUCCESS] Launching Trajectory Script: {script_path}\n")
+                    log_file.flush()
+                    subprocess.Popen([sys.executable, script_path], stdout=log_file, stderr=log_file, env=current_env)
+                
+                else:
+                    log_file.write(f"[PIPELINE] ⏳ Step 1: Forcing pre-gesture hand down reset...\n")
+                    log_file.flush()
+                    # We use subprocess.run (blocking call) here to force the robot to finish moving down
+                    subprocess.run([sys.executable, self.hand_down_script], stdout=log_file, stderr=log_file, env=current_env)
+                    
+                    # Brief structural pause for physics simulation stability
+                    time.sleep(1.0)
+                    
+                    log_file.write(f"[PIPELINE] 🚀 Step 2: Launching Target Trajectory Script: {script_path}\n")
+                    log_file.flush()
+                    # We use subprocess.run here so the manager waits until your active gesture completes 
+                    subprocess.run([sys.executable, script_path], stdout=log_file, stderr=log_file, env=current_env)
+                    
+                    time.sleep(0.5)
+                    
+                    log_file.write(f"[PIPELINE] ⏳ Step 3: Returning to post-gesture hand down reset...\n")
+                    log_file.flush()
+                    subprocess.Popen([sys.executable, self.hand_down_script], stdout=log_file, stderr=log_file, env=current_env)
             else:
                 log_file.write(f"[MISMATCH] Command '{command}' not registered in manager keys.\n")
                 log_file.flush()
