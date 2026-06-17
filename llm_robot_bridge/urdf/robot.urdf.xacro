@@ -13,6 +13,9 @@
     <material name="blue_mat">
         <color rgba="0.0 0.4 0.8 1.0"/>
     </material>
+    <material name="pink_mat">
+        <color rgba="0.9 0.4 0.5 1.0"/>
+    </material>
 
     <xacro:macro name="box_inertia" params="m w h d">
         <inertial>
@@ -191,13 +194,28 @@
         </joint>
         <xacro:pos_ctrl joint="${prefix}_elbow_roll"/>
 
+        <!-- elbow yaw — new intermediate link for forearm rotation -->
+        <link name="${prefix}_elbow_yaw_link">
+            <visual><geometry><sphere radius="0.032"/></geometry><material name="white_mat"/></visual>
+            <xacro:sph_inertia m="0.2" r="0.032"/>
+        </link>
+        <gazebo reference="${prefix}_elbow_yaw_link"><material>Gazebo/White</material></gazebo>
+        <joint name="${prefix}_elbow_yaw" type="revolute">
+            <parent link="${prefix}_elbow_roll_link"/>
+            <child link="${prefix}_elbow_yaw_link"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <limit lower="-1.57" upper="1.57" effort="40" velocity="2.0"/>
+        </joint>
+        <xacro:pos_ctrl joint="${prefix}_elbow_yaw"/>
+
         <link name="${prefix}_forearm_link">
             <visual><origin xyz="0 0 -0.125" rpy="0 0 0"/><geometry><cylinder radius="0.035" length="0.25"/></geometry><material name="white_mat"/></visual>
             <xacro:cyl_inertia m="1.5" r="0.035" h="0.25"/>
         </link>
         <gazebo reference="${prefix}_forearm_link"><material>Gazebo/White</material></gazebo>
         <joint name="${prefix}_wrist_pitch" type="revolute">
-            <parent link="${prefix}_elbow_roll_link"/>
+            <parent link="${prefix}_elbow_yaw_link"/>
             <child link="${prefix}_forearm_link"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
@@ -314,33 +332,79 @@
 
     <link name="head_link">
         <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><box size="0.05 0.3 0.2"/></geometry><material name="white_mat"/></visual>
-        
-        <visual>
-            <origin xyz="0.026 0.06 0.02" rpy="0 1.5708 0"/>
-            <geometry><cylinder radius="0.025" length="0.01"/></geometry>
-            <material name="black_mat"/>
-        </visual>
-        <visual>
-            <origin xyz="0.026 -0.06 0.02" rpy="0 1.5708 0"/>
-            <geometry><cylinder radius="0.025" length="0.01"/></geometry>
-            <material name="black_mat"/>
-        </visual>
-        <visual>
-            <origin xyz="0.026 0.0 -0.05" rpy="0 0 0"/>
-            <geometry><box size="0.01 0.08 0.03"/></geometry>
-            <material name="blue_mat"/>
-        </visual>
-
         <xacro:box_inertia m="1.5" w="0.05" h="0.3" d="0.2"/>
     </link>
-    <gazebo reference="head_link">
-        <material>Gazebo/White</material>
-    </gazebo>
+
+<gazebo reference="head_link">
+    <material>Gazebo/White</material>
+</gazebo>
     
-    <joint name="head_joint" type="fixed">
+    <!-- Head tilt (nod up/down) -->
+    <link name="head_pitch_link">
+        <xacro:sph_inertia m="0.3" r="0.03"/>
+    </link>
+    <joint name="head_pitch" type="revolute">
         <parent link="torso_link"/>
+        <child link="head_pitch_link"/>
+        <origin xyz="0 0 0.95" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="1.0"/>
+    </joint>
+    <xacro:pos_ctrl joint="head_pitch"/>
+
+    <!-- Head pan (look left/right) -->
+    <joint name="head_yaw" type="revolute">
+        <parent link="head_pitch_link"/>
         <child link="head_link"/>
-        <origin xyz="0 0 0.95" rpy="0 0 0"/> 
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-1.0" upper="1.0" effort="10" velocity="1.0"/>
+    </joint>
+    <xacro:pos_ctrl joint="head_yaw"/>
+
+    <link name="left_eye_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+        <geometry><cylinder radius="0.025" length="0.01"/></geometry>
+        <material name="black_mat"/>
+    </visual>
+    <xacro:sph_inertia m="0.01" r="0.01"/>
+</link>
+<gazebo reference="left_eye_link"><material>Gazebo/Black</material></gazebo>
+<joint name="left_eye_joint" type="fixed">
+    <parent link="head_link"/>
+    <child link="left_eye_link"/>
+    <origin xyz="0.026 0.06 0.02" rpy="0 0 0"/>
+</joint>
+
+<link name="right_eye_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+        <geometry><cylinder radius="0.025" length="0.01"/></geometry>
+        <material name="black_mat"/>
+    </visual>
+    <xacro:sph_inertia m="0.01" r="0.01"/>
+</link>
+<gazebo reference="right_eye_link"><material>Gazebo/Black</material></gazebo>
+<joint name="right_eye_joint" type="fixed">
+    <parent link="head_link"/>
+    <child link="right_eye_link"/>
+    <origin xyz="0.026 -0.06 0.02" rpy="0 0 0"/>
+</joint>
+
+<link name="mouth_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry><box size="0.01 0.08 0.03"/></geometry>
+            <material name="pink_mat"/>
+        </visual>
+        <xacro:box_inertia m="0.01" w="0.01" h="0.08" d="0.03"/>
+    </link>
+    <gazebo reference="mouth_link"><material>Gazebo/Pink</material></gazebo>
+    <joint name="mouth_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="mouth_link"/>
+        <origin xyz="0.026 0.0 -0.05" rpy="0 0 0"/>
     </joint>
 
     <xacro:arm prefix="left" reflect="1"/>

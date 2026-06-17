@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-from time import time
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 import subprocess
 import os
 import sys
+import time  # Explicitly importing the module to support time.sleep()
 
 class GestureManagerNode(Node):
     def __init__(self):
@@ -24,6 +23,9 @@ class GestureManagerNode(Node):
             'state_thinking': os.path.join(base_path, 'gesture_thinking.py'),
             'walk': os.path.join(base_path, 'gesture_walk.py')
         }
+        
+        # FIXED: Declaring the missing attribute needed by the pipeline
+        self.hand_down_script = self.gesture_mapping['hand_down']
         
         self.log_file_path = os.path.expanduser('~/gesture_execution.log')
         
@@ -55,8 +57,6 @@ class GestureManagerNode(Node):
             
             if command in self.gesture_mapping:
                 script_path = self.gesture_mapping[command]
-                log_file.write(f"[SUCCESS] Launching Trajectory Script: {script_path}\n")
-                log_file.flush()
                 
                 # Keep active ROS variables intact in the environment
                 current_env = os.environ.copy()
