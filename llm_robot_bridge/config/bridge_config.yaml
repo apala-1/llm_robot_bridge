@@ -1,0 +1,297 @@
+- ros_topic_name: "/head/pitch/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/head_pitch/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/head/yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/head_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+# Left Arm Control Bridge
+- ros_topic_name: "/left_arm/shoulder_pitch/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_shoulder_pitch/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/shoulder_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_shoulder_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/elbow/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_elbow/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/elbow_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_elbow_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/elbow_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_elbow_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/wrist_pitch/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_wrist_pitch/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/wrist_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_wrist_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/wrist_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_wrist_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+# Right Arm Control Bridge
+- ros_topic_name: "/right_arm/shoulder_pitch/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_shoulder_pitch/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/shoulder_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_shoulder_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/elbow/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_elbow/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/wrist_pitch/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_wrist_pitch/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/wrist_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_wrist_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/wrist_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_wrist_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+# Left Hand Fingers
+- ros_topic_name: "/left_hand/index_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_index_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/index_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_index_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/index_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_index_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/middle_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_middle_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/middle_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_middle_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/middle_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_middle_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/ring_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_ring_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/ring_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_ring_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/ring_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_ring_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/pinky_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_pinky_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/pinky_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_pinky_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/pinky_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_pinky_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/thumb_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_thumb_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_hand/thumb_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_thumb_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+# Right Hand Fingers
+- ros_topic_name: "/right_hand/index_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_index_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/index_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_index_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/index_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_index_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/middle_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_middle_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/middle_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_middle_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/middle_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_middle_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/ring_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_ring_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/ring_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_ring_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/ring_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_ring_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/pinky_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_pinky_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/pinky_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_pinky_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/pinky_j3/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_pinky_j3/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/thumb_j1/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_thumb_j1/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_hand/thumb_j2/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_thumb_j2/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/shoulder_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_shoulder_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/shoulder_yaw/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_shoulder_yaw/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/left_arm/elbow_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/left_elbow_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/right_arm/elbow_roll/cmd_pos"
+  gz_topic_name: "/model/dual_arm_service_bot/joint/right_elbow_roll/0/cmd_pos"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/model/dual_arm_service_bot/cmd_vel"
+  gz_topic_name: "/model/dual_arm_service_bot/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
