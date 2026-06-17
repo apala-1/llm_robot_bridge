@@ -96,23 +96,23 @@ class GestureHandUp(Node):
 
         # ── Exact target values ─────────────────────────────────────────────
         # Right arm
-        R_PITCH      = -0.72
-        R_ROLL       = -1.60
-        R_YAW        = -1.97
-        R_ELBOW      =  0.00
-        R_ELBOW_ROLL =  1.57
-        R_ELBOW_YAW  =  0.00
+        R_PITCH      = -0.37
+        R_ROLL       = -1.55
+        R_YAW        = -1.78
+        R_ELBOW      = -1.51
+        R_ELBOW_ROLL =  0.18
+        R_ELBOW_YAW  =  -1.57
         R_WRIST_P    =  0.03
         R_WRIST_R    =  0.00
         R_WRIST_Y    =  0.00
 
         # Left arm
-        L_PITCH      = -1.36
-        L_ROLL       =  1.54
+        L_PITCH      = -0.02
+        L_ROLL       =  1.52
         L_YAW        =  2.00
-        L_ELBOW      = -0.55
-        L_ELBOW_ROLL = -1.57
-        L_ELBOW_YAW  =  0.20
+        L_ELBOW      = -1.52
+        L_ELBOW_ROLL = -0.40
+        L_ELBOW_YAW  =  1.42
         L_WRIST_P    = -0.03
         L_WRIST_R    = -0.04
         L_WRIST_Y    = -0.02

@@ -31,6 +31,7 @@ setup(
             'gesture_hand_down = llm_robot_bridge.gesture_hand_down:main',
             'gesture_thinking = llm_robot_bridge.gesture_thinking:main',
             'gesture_walk = llm_robot_bridge.gesture_walk:main',
+            'gesture_talking = llm_robot_bridge.gesture_talking:main',
             'wall_spawner = llm_robot_bridge.spawn_walls:main',
         ],
     },
