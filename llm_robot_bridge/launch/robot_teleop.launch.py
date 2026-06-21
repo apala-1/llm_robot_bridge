@@ -6,7 +6,7 @@ from launch_xml.launch_description_sources import XMLLaunchDescriptionSource # ð
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    config_file_path = os.path.expanduser('~/ros2_ws/bridge_config.yaml')
+    config_file_path = os.path.expanduser('~/ros2_ws/src/llm_robot_bridge/config/bridge_config.yaml')
 
     # Node 1: ROS GZ Parameter Bridge
     parameter_bridge_node = Node(
